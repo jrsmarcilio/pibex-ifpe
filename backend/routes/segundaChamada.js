@@ -21,7 +21,6 @@ const upload = multer({ // Limitando os Uploads com até 5 MB
 
 // Insere um Requerimento SCA
 router.post('/', upload.single('docAnexo'), (req, res, next) => {
-  console.log(req.file);
   mysql.getConnection((error, conn) => {
     conn.query(
       `INSERT INTO segundaChamada
