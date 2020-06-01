@@ -1,7 +1,7 @@
 <img src="https://github.com/jrsmarcilio/secondcall/blob/master/Git/Modelo%20do%20Processo.jpg"/>
 <i>Modelo do processo de um requerimento para segunda chamada de avaliação.</i>
 
-# PROJETO PIBEX   :construction: Em desenvolvimento :construction:
+# PROJETO PIBEX
 "Mapeamento, Análise e Automatização de Processos de Atendimento do IFPE
 
 Processo: Solicitar Segunda Chamada de Avaliação
