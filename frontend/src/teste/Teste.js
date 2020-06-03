@@ -14,6 +14,7 @@ export class Teste extends Component {
           curso: '',
           dia_ausente: '',
           observacoes: '',
+          docAnexo: '',
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -29,16 +30,13 @@ export class Teste extends Component {
     handleSubmit(event) {
     event.preventDefault();
 
-
     axios.post('http://localhost:3001/newreq', this.state)
         .then(function (response) {
-        console.log('Funfou !!!!');
+        alert('Requerimento encaminhado com sucesso!');
         })
         .catch(function (error) {
-        console.log(error);
+        alert(error, 'Falha no envio do requerimento, tente novamente!');
         });
-
-
     }
 
     componentDidMount(){
@@ -75,7 +73,7 @@ export class Teste extends Component {
       </div>
     </nav>
             <br></br>
-                      <form method="POST" onSubmit={this.handleSubmit}>
+                      <form action="/newreq" enctype="multipart/form-data" method="POST" onSubmit={this.handleSubmit}>
 
             <div className= 'container row'>
 
@@ -114,15 +112,8 @@ export class Teste extends Component {
             </div>
 
         <div className="input-field col s12 m6">
-            <label for="datepicker">Data do dia perdido:</label>
-            <input
-                className="datepicker"
-                name="dia_ausente"
-                type="date"
-                value={this.state.dia_ausente}
-                onChange={this.handleChange}
-            />
-
+            <label Htmlfor="datepicker">Data do dia perdido:</label>
+            <input name="dia_ausente" type="date" value={this.state.dia_ausente} onChange={this.handleChange} />
         </div>
             <div className="textarea col s12 m6">
             <textarea 
@@ -142,16 +133,18 @@ export class Teste extends Component {
                 <div class="file-field input-field">
                 <div class="btn green lighten-2 ">
                     <span>File</span>
-                    <input type="file" multiple/>
+                    <input type="file"
+                        multiple
+                        name="docAnexo"
+                        onChange={this.handleChange}
+                    />
                 </div>
 
                 <div className="file-path-wrapper">
                     <input 
                         className="file-path validate"
-                        type="file"
+                        type="text"
                         placeholder="Anexe seus arquivos aqui"
-                        name="docAnexo"
-                        onChange={this.handleChange}
                     />
                 </div>
 
@@ -199,4 +192,3 @@ export class Teste extends Component {
 }
 
 export default Teste;
-
