@@ -1,13 +1,26 @@
-const express = require('express');
-const mysql = require('mysql2');
+var express = require('express');
+const bodyParser = require('body-parser')
+var cors = require('cors');
+var app = express();
 
-const app = express();
+app.use(cors({
+  origin: '*'
+}));
 
-const Routes = require('./routes/routes')
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false})); 
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-app.use('/', Routes);
+const newRequirement = require('./routes/newRequirement');
+app.use('/', newRequirement);
 
-app.listen(3000)
+const listRequirements = require ('./routes/listRequirements');
+app.use('/', listRequirements);
+
+const deleteRequirement = require ('./routes/deleteRequirement');
+app.use('/', deleteRequirement);
+
+
+app.listen(3001, function () {
+  console.log('Aplicação escutando na porta 3001!');
+});

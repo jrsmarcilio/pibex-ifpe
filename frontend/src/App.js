@@ -4,8 +4,6 @@ import 'materialize-css/dist/js/materialize'
 import './teste/style.css'
 import './login/style.css'
 import 'materialize-css'
-import Login from './login/Login'
-import Teste from './teste/Teste';
 import { Routes } from './routes';
 
 
