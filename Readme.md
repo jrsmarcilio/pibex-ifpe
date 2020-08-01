@@ -1,14 +1,21 @@
-<img src="https://github.com/jrsmarcilio/secondcall/blob/master/Git/Modelo%20do%20Processo.jpg"/>
-<i>Modelo do processo de um requerimento para segunda chamada de avaliação.</i>
+## PROJETO PIBEX
+### Mapeamento, análise e automatização de processos de atendimento do IFPE.
 
-# PROJETO PIBEX
-"Mapeamento, Análise e Automatização de Processos de Atendimento do IFPE
 
-Processo: Solicitar Segunda Chamada de Avaliação
+### 	OBJETIVO PROSPOSTO
+O objetivo geral do projeto consiste em contribuir com a melhoria do atendimento ao discente e à comunidade externa, utilizando, para tanto, um sistema de informação para gestão de solicitações direcionadas à CRADT, inicialmente no campus Jaboatão dos Guararapes, e escalando para outros campi do IFPE. 
 
-Alunos:
-Marcílio Júnior, Eduardo Barros e Aline Edvania
+Objetivos específicos:
+	Identificar e mapear os processos de atendimento ao discente e a sociedade por parte do IFPE;
+	Otimizar os processos mapeados;
+	Implementar um sistema computacional para auxiliar e otimizar o atendimento de solicitações discente e sociedade em geral;
+	Planejar a escalabilidade para outros campi; e
+	Implantar a solução em outros dois campi.
 
-Orientados pelos Professores
-[Francisco Nascimento](https://github.com/chicojr) e 
-[Viviane Aureliano](https://www.linkedin.com/in/viviane-aureliano-3185658/)
+Professores Participantes:
+Francisco Nascimento
+Viviane Aureliano
+
+Alunos participantes:
+Eduardo Bezerra
+Marcílio Júnior
