@@ -47,6 +47,8 @@ export class Teste extends Component {
             var instances = M.FormSelect.init(elems, );
             var elems = document.querySelectorAll('.datepicker');
             var instances = M.Datepicker.init(elems, );
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems,);
           });
 
          
@@ -61,46 +63,28 @@ export class Teste extends Component {
 
         <a href="aa.html" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-        <ul class="right hide-on-med-and-down">
-          <li><a href="https://portal.ifpe.edu.br/campus/jaboatao">Site Oficial</a></li>
-          <li><a href="aa.html">Ajuda</a></li>
-        </ul>
+        <ul className="right hide-on-med-and-down">       
+       <a className='dropdown-trigger btn light-green darken-4 ' href='#' data-target='dropdown1'> <i className="material-icons">menu</i></a>
+    <ul id='dropdown1' class='dropdown-content'>
     
-        <ul id="nav-mobile" class="sidenav">
-            <li><a href="https://portal.ifpe.edu.br/campus/jaboatao">Site Oficial</a></li>
-            <li><a href="aa.html">Ajuda</a></li>
-        </ul>
-      </div>
+  <li><a href="/teste">Criar requisições</a></li>
+  <li><a href="/lista">Listar requisições</a></li>
+<li><a href="aa.html">Ajuda</a></li>
+</ul>
+     </ul>
+ 
+     <ul id="nav-mobile" className="sidenav">
+     <li><a href="#!">Criar requisições</a></li>
+     <li><a href="#!">Listar requisições</a></li>
+     <li><a href="aa.html">Ajuda</a></li>
+     </ul>
+   </div>
+     
     </nav>
             <br></br>
                       <form action="/newreq" enctype="multipart/form-data" method="POST" onSubmit={this.handleSubmit}>
 
             <div className= 'container row'>
-
-                <div className="input-field col s12 m6">
-
-                <select name="curso" value={this.state.curso} onChange={this.handleChange}>
-            <option value="" disabled selected>Selecione o seu curso</option>
-            <option type="text" value="Informática"> Informatica para internet</option>
-            <option type="text" value="Qualidade"> Qualidade</option>
-            <option type="text" value="ADS">Analise e desenvolvimento de sistemas</option>
-            </select>
-            <label>Esolha seu Curso</label>
-
-        </div>
-            
-        <div className="input-field col s12 m6">
-           
-            <input id="input_text"
-                maxlength="13"
-                name="matricula"
-                type="text"
-                value={this.state.matricula}
-                onChange={this.handleChange}
-            />
-            <label for="input_text">Insira sua matricula:</label>
-
-        </div>
 
         <div className="input-field col s12 m6">
 
@@ -112,8 +96,9 @@ export class Teste extends Component {
             </div>
 
         <div className="input-field col s12 m6">
-            <label Htmlfor="datepicker">Data do dia perdido:</label>
+       
             <input name="dia_ausente" type="date" value={this.state.dia_ausente} onChange={this.handleChange} />
+            <label Htmlfor="datepicker">Data do dia Perdido</label>
         </div>
             <div className="textarea col s12 m6">
             <textarea 
