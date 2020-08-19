@@ -5,14 +5,12 @@ import './style.css'
 
 
 
-  export class login extends Component {
+  export class Firstacess extends Component {
 
     componentDidMount(){
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems,);
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            var instances = M.Dropdown.init(elems,);
             });
 
         }
@@ -22,25 +20,18 @@ import './style.css'
            
             <div>
             <nav className="light-green darken-4" role="navigation">
-  <div className="nav-wrapper container"><a id="logo-container" href="" className="brand-logo">IFPE</a>
-  
+  <div className="nav-wrapper container"><a id="logo-container" href=" " className="brand-logo">IFPE</a>
 
      <a href="aa.html" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
 
-     <ul className="right hide-on-med-and-down">       
-       <a className='dropdown-trigger btn light-green darken-4 ' href='#' data-target='dropdown1'> <i className="material-icons">menu</i></a>
-    <ul id='dropdown1' class='dropdown-content'>
-
-  <li><a href="#!">Criar requisições</a></li>
-  <li><a href="#!">Listar requisições</a></li>
-<li><a href="aa.html">Ajuda</a></li>
-</ul>
+     <ul className="right hide-on-med-and-down">
+       <li><a href="https://portal.ifpe.edu.br/campus/jaboatao">Site Oficial</a></li>
+       <li><a href="aa.html">Ajuda</a></li>
      </ul>
  
      <ul id="nav-mobile" className="sidenav">
-     <li><a href="#!">Criar requisições</a></li>
-     <li><a href="#!">Listar requisições</a></li>
-     <li><a href="aa.html">Ajuda</a></li>
+         <li><a href="https://portal.ifpe.edu.br/campus/jaboatao">Site Oficial</a></li>
+         <li><a href="aa.html">Ajuda</a></li>
      </ul>
    </div>
  </nav>
@@ -50,45 +41,28 @@ import './style.css'
   
                 
                         <div className="row container">
-                   <div className="col s12 " id="Login">
+                   <div className="col s12 " id="First">
 
-                       <p className="flow-text black-text text-darken-4 center">Faça login com a sua matricula/siape!</p>
+                       <p className="flow-text black-text text-darken-4 center">Primeiro Acesso</p>
                         <div className="input-field col s6">
-                            <i className="material-icons prefix">perm_identity</i>
-                            <input id="input_text" type="text" className="validate"/>
-                            <label htmlFor="input_text">Matricula/Siape</label>
-                            <span className="helper-text">Insira sua Matricula/Siape</span>
+                            <i className="material-icons prefix">mail_outline</i>
+                            <input id="email" type="email" className="validate"/>
+                            <label htmlFor="email">Email</label>
+                            <span className="helper-text" data-error="wrong" data-success="right">Insira seu Email</span>
                         </div>
 
                         <div className="input-field col s6">            
-                            <i className="material-icons prefix">lock_outline</i>
-                            <input id="password" type="password" className="validate"/>
-                            <label htmlFor="password">Senha</label>
+                            <i className="material-icons prefix">perm_identity</i>
+                            <input id="input_text" type="text" className="validate"/>
+                            <label htmlFor="input_text">Matricula</label>
                         </div>
-
-                        
-                        <div className="col s12 center">      
-                            <p>
-                                <label>
-                                  <input type="checkbox" />
-                                  <span>Lembrar Senha</span>
-                                </label>
-                              </p>
-                            </div>  
-                           
+  
                             <div className="container">
-                            <div className="col s6">
-                              <a href="/home" className="btn waves-effect green lighten-2 col s12 ">Login</a>
+                            <div className="col s12">
+                              <a href="/teste" className="btn waves-effect green lighten-2 col s11">Logar</a>
                             </div>
                             </div>
-
-                           <div className="container">
-                            <div className="col s6">                  
-                              <a href="/Primeiroacesso" className="btn waves-effect green lighten-4 black-text col s12 "> Primeiro acesso!</a>
-                            </div>
-                            </div>
-                            
-                        
+     
                    </div>      
                    </div>   
                  
@@ -130,4 +104,4 @@ import './style.css'
 
 
 
-export default login;
+export default Firstacess;

@@ -1,15 +1,19 @@
 body {display: flex;
   min-height:100vh;
-  flex-direction: column;}
-
+  flex-direction: column;
+}
   main {
     flex: 1 0 auto;
   }
 
+  table{
+    margin-top: 7%;
+    margin-left: 0%;
+  }
 .pagee-footer{
 width: 100%;
-position: absolute;
-bottom: 0;
+
+
 
 }
 .section{
