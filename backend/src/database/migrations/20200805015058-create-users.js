@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      privilege: {
+      privileges: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
         allowNull: false,
