@@ -2,35 +2,34 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('request-2ndcall', {
+    await queryInterface.createTable('requeriment2ndcall', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      registration: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      password_hash: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      privileges: {
+      id_user: {
         type: Sequelize.INTEGER,
-        defaultValue: 0,
         allowNull: false,
+      },
+      discipline: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      test_date: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      comments: {
+        type: Sequelize.STRING,
+        defaultValue: 'No comments.',
+        allowNull: false,
+      },
+      path: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -44,6 +43,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('requeriment2ndcall');
   },
 };

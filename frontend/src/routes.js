@@ -13,8 +13,8 @@ export function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/home" component={home} />
         <Route path="/" exact component={Login} />
+        <Route path="/home" component={home} />
         <Route path="/register" component={Register} />
 
         <Route path="/2ndcall" component={request2ndcall} />

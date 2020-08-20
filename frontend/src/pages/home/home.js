@@ -12,7 +12,7 @@ export class Home extends Component {
       var instances = M.Sidenav.init(elems);
     });
   }
-
+  
   render() {
     return (
       <div>

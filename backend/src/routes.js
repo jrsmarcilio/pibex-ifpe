@@ -4,7 +4,7 @@ import multerConfig from './config/multer';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
-import FileController from './app/controllers/FileController';
+import RequerimentController from './app/controllers/RequerimentController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -18,6 +18,6 @@ routes.use(authMiddleware); //Rotas abaixo necessitam de autenticação
 
 routes.put('/users', UserController.update);
 
-routes.post('/2ndcall', upload.single('file'), FileController.store);
+routes.post('/2ndcall', upload.single('file'), RequerimentController.store);
 
 export default routes;
