@@ -1,46 +1,59 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import "materialize-css/dist/js/materialize";
 import M from "materialize-css";
 import "./style.css";
 
-export class Listagem extends Component {
+export class Coordlist extends Component {
   componentDidMount() {
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".sidenav");
       var instances = M.Sidenav.init(elems);
+      var elems = document.querySelectorAll(".dropdown-trigger");
+      var instances = M.Dropdown.init(elems);
     });
   }
 
   render() {
     return (
       <div>
-        <nav className="light-green darken-4" role="navigation">
-          <div className="nav-wrapper container">
-            <a id="logo-container" href="/home " className="brand-logo">
+        <nav class="light-green darken-4" role="navigation">
+          <div class="nav-wrapper container">
+            <a id="logo-container" href=" " class="brand-logo">
               IFPE
             </a>
-            <a
-              href="aa.html"
-              data-target="nav-mobile"
-              className="sidenav-trigger"
-            >
-              <i className="material-icons">menu</i>
+
+            <a href="aa.html" data-target="nav-mobile" class="sidenav-trigger">
+              <i class="material-icons">menu</i>
             </a>
 
             <ul className="right hide-on-med-and-down">
-              <li>
-                <a href="/home">Home</a>
-              </li>
-              <li>
-                <a href="aa.html">Ajuda</a>
-              </li>
+              <a
+                className="dropdown-trigger btn light-green darken-4 "
+                href="#"
+                data-target="dropdown1"
+              >
+                {" "}
+                <i className="material-icons">menu</i>
+              </a>
+              <ul id="dropdown1" class="dropdown-content">
+                <li>
+                  <a href="/2ndcall">Criar requisições</a>
+                </li>
+                <li>
+                  <a href="/list2ndcall">Listar requisições</a>
+                </li>
+                <li>
+                  <a href="aa.html">Ajuda</a>
+                </li>
+              </ul>
             </ul>
 
             <ul id="nav-mobile" className="sidenav">
               <li>
-                <a href="/home">Home</a>
+                <a href="#!">Criar requisições</a>
+              </li>
+              <li>
+                <a href="#!">Listar requisições</a>
               </li>
               <li>
                 <a href="aa.html">Ajuda</a>
@@ -49,49 +62,49 @@ export class Listagem extends Component {
           </div>
         </nav>
 
-        <div className="container table">
-          <table className="highlight centered ">
+        <div className="container ">
+          <table className="highlight centered table">
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Nome</th>
                 <th>Matricula</th>
                 <th>Data do requerimento</th>
-                <th>Observações</th>
-                <th>Comprovante</th>
                 <th>Situação</th>
+                <th>Opções</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
                 <td>001</td>
+                <td>Joseph Alencar</td>
                 <td>20201b310000</td>
                 <td>20/07/2020</td>
+                <td>Em análise</td>
                 <td>
-                  Faltei por algum motivo que ainda não foi explicado pelo o
-                  universo, porque junta o presente e o futuro viajando pelo
-                  passado.
-                </td>
-                <td>
-                  <a href="/" class="waves-effect green lighten-2 btn">
-                    Documento
+                  <a
+                    href="/coordenacao"
+                    className="waves-effect green lighten-2 btn"
+                  >
+                    analisar requerimentos
                   </a>
                 </td>
-                <td>Em análise</td>
               </tr>
               <tr>
-                <td>001</td>
-                <td>20201b310000</td>
+                <td>002</td>
+                <td>Silvest talonge</td>
+                <td>20201b319999</td>
                 <td>20/07/2020</td>
-                <td className="Text">
-                  Faltei por algum motivo que ainda não foi explicado pelo o
-                  universo, porque junta o presente e o futuro viajando pelo
-                  passado.
-                </td>
-                <td>
-                  <a class="waves-effect green lighten-2 btn">Documento</a>
-                </td>
                 <td>Em análise</td>
+                <td>
+                  <a
+                    href="/coordenacao"
+                    className="waves-effect green lighten-2 btn"
+                  >
+                    analisar requerimentos
+                  </a>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -146,4 +159,4 @@ export class Listagem extends Component {
   }
 }
 
-export default Listagem;
+export default Coordlist;

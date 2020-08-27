@@ -76,10 +76,10 @@ export class Teste extends Component {
               </a>
               <ul id="dropdown1" class="dropdown-content">
                 <li>
-                  <a href="/teste">Criar requisições</a>
+                  <a href="/2ndcall">Criar requisições</a>
                 </li>
                 <li>
-                  <a href="/lista">Listar requisições</a>
+                  <a href="/list2ndcall">Listar requisições</a>
                 </li>
                 <li>
                   <a href="aa.html">Ajuda</a>
@@ -116,7 +116,34 @@ export class Teste extends Component {
                 <option value="SegundaChamada"> Segunda chamada</option>
               </select>
             </div>
-
+            <div class="input-field col s12 m6">
+              <select>
+                <option value="" disabled selected>
+                  Selecione a disciplina desejada
+                </option>
+                <optgroup label="1º periodo">
+                  <option value="1">
+                    Desenvolvimento Web I(30H) - VIVIANE
+                  </option>
+                  <option value="2">
+                    Fundamentos da Informática(45H) - SÉRGIO TORRES
+                  </option>
+                  <option value="3">
+                    Inglês Instrumental I(30H) - ROBERTA LIMA
+                  </option>
+                  <option value="4">Lógica de Programação(75H) - HAVANA</option>
+                  <option value="5">
+                    Matemática Aplicada(45H) - TIAGO MARQUES MADUREIRA
+                  </option>
+                  <option value="6">
+                    Português Instrumental(45H) - ANA JOSIL
+                  </option>
+                  <option value="7">
+                    Rede de Computadores(60H) - DIEGO DOS PASSOS SILVA
+                  </option>
+                </optgroup>
+              </select>
+            </div>
             <div className="input-field col s12 m6">
               <input
                 name="dia_ausente"
