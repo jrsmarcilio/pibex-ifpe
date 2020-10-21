@@ -10,79 +10,65 @@ export class Home extends Component {
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".sidenav");
       var instances = M.Sidenav.init(elems);
+      var elems = document.querySelectorAll(".dropdown-trigger");
+      var instances = M.Dropdown.init(elems);
     });
   }
-  
+
   render() {
     return (
       <div>
         <nav className="light-green darken-4" role="navigation">
           <div className="nav-wrapper container">
-            <a id="logo-container" href=" " className="brand-logo">
-              IFPE
-            </a>
+            <a id="logo-container" href="*" className="brand-logo">IFPE</a>
 
-            <a
-              href="aa.html"
-              data-target="nav-mobile"
-              className="sidenav-trigger"
-            >
+            <a href="aa.html" data-target="nav-mobile" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </a>
 
             <ul className="right hide-on-med-and-down">
-              <li>
-                <a
-                  href="https://portal.ifpe.edu.br/campus/jaboatao"
-                  target="_blank"
-                >
-                  Site Oficial
-                </a>
-              </li>
-              <li>
-                <a href="aa.html">Ajuda</a>
-              </li>
+              <a className="dropdown-trigger btn light-green darken-4 "
+                href="*"
+                data-target="dropdown1">
+                {" "}
+                <i className="material-icons">menu</i>
+              </a>
+
+              <ul id="dropdown1" className="dropdown-content">
+                <li><a href="aa.html">Ajuda</a></li>
+              </ul>
             </ul>
 
             <ul id="nav-mobile" className="sidenav">
-              <li>
-                <a href="https://portal.ifpe.edu.br/campus/jaboatao">
-                  Site Oficial
-                </a>
-              </li>
-              <li>
-                <a href="aa.html">Ajuda</a>
-              </li>
+              <li><a href="aa.html">Ajuda</a></li>
             </ul>
           </div>
         </nav>
 
-        <div className="bt">
+
+        <div className="bt container row col s12">
           <ul>
             <li>
               <a
                 href="/2ndcall"
-                className="waves-effect green lighten-2 black-text btn bt1"
-              >
-                Criar requisições
-              </a>{" "}
+                className="waves-effect green lighten-2 black-text col s9 btn bt1">Criar requisições
+              </a>
             </li>
+
             <li>
               <a
                 href="/list2ndcall"
-                className="waves-effect green lighten-2 btn black-text bt2"
-              >
-                Listar requisições
-              </a>{" "}
+                className="waves-effect green lighten-2 btn black-text col s9  bt2">Listar requisições</a>
             </li>
           </ul>
         </div>
-
+        
+        
         <footer className="pagee-footer  grey darken">
           <div className="container">
             <div className="row">
               <div className="col s12 l6">
-                <h5> Mais informações:</h5>
+                <h5>Mais informações:</h5>
               </div>
               <div className="col s12 l4 offset-12">
                 <h5>Redes Sociais</h5>

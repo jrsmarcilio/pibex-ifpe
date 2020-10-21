@@ -21,9 +21,11 @@ export class Teste extends Component {
   }
 
   handleChange(event) {
+    console.log(event.target.name)
     let change = {};
     change[event.target.name] = event.target.value;
     this.setState(change);
+
   }
 
   handleSubmit(event) {
@@ -55,96 +57,70 @@ export class Teste extends Component {
   render() {
     return (
       <div>
-        <nav class="light-green darken-4" role="navigation">
-          <div class="nav-wrapper container">
-            <a id="logo-container" href=" " class="brand-logo">
-              IFPE
-            </a>
+        <nav className="light-green darken-4" role="navigation">
+          <div className="nav-wrapper container">
+            <a id="logo-container" href="*" className="brand-logo">IFPE</a>
 
-            <a href="aa.html" data-target="nav-mobile" class="sidenav-trigger">
-              <i class="material-icons">menu</i>
+            <a href="aa.html" data-target="nav-mobile" className="sidenav-trigger">
+              <i className="material-icons">menu</i>
             </a>
 
             <ul className="right hide-on-med-and-down">
-              <a
-                className="dropdown-trigger btn light-green darken-4 "
-                href="#"
-                data-target="dropdown1"
-              >
+              <a className="dropdown-trigger btn light-green darken-4 "
+                href="*"
+                data-target="dropdown1">
                 {" "}
                 <i className="material-icons">menu</i>
               </a>
-              <ul id="dropdown1" class="dropdown-content">
-                <li>
-                  <a href="/2ndcall">Criar requisições</a>
-                </li>
-                <li>
-                  <a href="/list2ndcall">Listar requisições</a>
-                </li>
-                <li>
-                  <a href="aa.html">Ajuda</a>
-                </li>
+
+              <ul id="dropdown1" className="dropdown-content">
+                <li><a href="aa.html">Ajuda</a></li>
               </ul>
             </ul>
 
             <ul id="nav-mobile" className="sidenav">
-              <li>
-                <a href="#!">Criar requisições</a>
-              </li>
-              <li>
-                <a href="#!">Listar requisições</a>
-              </li>
-              <li>
-                <a href="aa.html">Ajuda</a>
-              </li>
+              <li><a href="aa.html">Ajuda</a></li>
             </ul>
           </div>
         </nav>
-        <br></br>
+
         <form
           action="/newreq"
           enctype="multipart/form-data"
           method="POST"
-          onSubmit={this.handleSubmit}
-        >
+          onSubmit={this.handleSubmit}>
+
           <div className="container row">
             <div className="input-field col s12 m6">
-              <select>
-                <option value="" disabled selected>
-                  Selecione o tipo de requisição
-                </option>
+
+              <select name="tipo_requisicao" onChange={this.handleChange}>
+                <option value="" disabled selected>Selecione o tipo de requisição</option>
                 <option value="SegundaChamada"> Segunda chamada</option>
+                <option data-section="AbonoFalta" value="AbonoFalta">Abono de falta</option>
               </select>
+
             </div>
-            <div class="input-field col s12 m6">
+
+            <div className="input-field col s12 m6">
+
               <select>
-                <option value="" disabled selected>
-                  Selecione a disciplina desejada
-                </option>
+                <option value="" disabled selected>Selecione a disciplina desejada</option>
                 <optgroup label="1º periodo">
-                  <option value="1">
-                    Desenvolvimento Web I(30H) - VIVIANE
-                  </option>
-                  <option value="2">
-                    Fundamentos da Informática(45H) - SÉRGIO TORRES
-                  </option>
-                  <option value="3">
-                    Inglês Instrumental I(30H) - ROBERTA LIMA
-                  </option>
+                  <option value="1">Desenvolvimento Web I(30H) - VIVIANE</option>
+                  <option value="2">Fundamentos da Informática(45H) - SÉRGIO TORRES</option>
+                  <option value="3">Inglês Instrumental I(30H) - ROBERTA LIMA</option>
                   <option value="4">Lógica de Programação(75H) - HAVANA</option>
-                  <option value="5">
-                    Matemática Aplicada(45H) - TIAGO MARQUES MADUREIRA
-                  </option>
-                  <option value="6">
-                    Português Instrumental(45H) - ANA JOSIL
-                  </option>
-                  <option value="7">
-                    Rede de Computadores(60H) - DIEGO DOS PASSOS SILVA
+                  <option value="5">Matemática Aplicada(45H) - TIAGO MARQUES MADUREIRA</option>
+                  <option value="6">Português Instrumental(45H) - ANA JOSIL</option>
+                  <option value="7"> Rede de Computadores(60H) - DIEGO DOS PASSOS SILVA
                   </option>
                 </optgroup>
               </select>
+
             </div>
+
             <div className="input-field col s12 m6">
+
               <input
                 name="dia_ausente"
                 type="date"
@@ -153,6 +129,7 @@ export class Teste extends Component {
               />
               <label Htmlfor="datepicker">Data do dia Perdido</label>
             </div>
+
             <div className="textarea col s12 m6">
               <textarea
                 rows="1000"
@@ -166,8 +143,8 @@ export class Teste extends Component {
             </div>
 
             <div className="textarea col s12 m6">
-              <div class="file-field input-field">
-                <div class="btn green lighten-2 ">
+              <div className="file-field input-field">
+                <div className="btn green lighten-2 ">
                   <span>File</span>
                   <input
                     type="file"
@@ -210,7 +187,7 @@ export class Teste extends Component {
                   <li>
                     <a
                       href="https://www.facebook.com/ifpejaboatao/"
-                      class="black-text"
+                      className="black-text"
                     >
                       Facebook
                     </a>
@@ -218,7 +195,7 @@ export class Teste extends Component {
                   <li>
                     <a
                       href="https://www.instagram.com/ifpejaboatao/"
-                      class="black-text"
+                      className="black-text"
                     >
                       Instagram
                     </a>
@@ -226,7 +203,7 @@ export class Teste extends Component {
                   <li>
                     <a
                       href="https://br.linkedin.com/school/ifpe-jaboatao/"
-                      class="black-text"
+                      className="black-text"
                     >
                       Linked In
                     </a>

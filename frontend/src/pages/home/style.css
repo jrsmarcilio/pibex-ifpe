@@ -9,16 +9,11 @@ main {
 }
 
 .bt {
-  margin-top: 12%;
-  margin-left: 33%;
+  padding: 7%;
+  padding-left: 17%;
+  
 }
-.bt1 {
-  width: 50%;
-}
-.bt2 {
-  width: 50%;
-  margin-top: 2%;
-}
+
 .page-footer {
   position: fixed;
   bottom: 0;

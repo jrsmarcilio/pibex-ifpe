@@ -10,6 +10,9 @@ export class Listagem extends Component {
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".sidenav");
       var instances = M.Sidenav.init(elems);
+
+      var elems = document.querySelectorAll(".dropdown-trigger");
+      var instances = M.Dropdown.init(elems);
     });
   }
 
@@ -18,30 +21,37 @@ export class Listagem extends Component {
       <div>
         <nav className="light-green darken-4" role="navigation">
           <div className="nav-wrapper container">
+
             <a id="logo-container" href="/home " className="brand-logo">
               IFPE
             </a>
-            <a
-              href="aa.html"
-              data-target="nav-mobile"
-              className="sidenav-trigger"
-            >
+
+            <a href="aa.html" data-target="nav-mobile" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </a>
 
             <ul className="right hide-on-med-and-down">
+              <a className="dropdown-trigger btn light-green darken-4" href="*" data-target="dropdown1">
+              <i className="material-icons">menu</i>
+             </a>
+
+           <ul id="dropdown1" className="dropdown-content">
               <li>
                 <a href="/home">Home</a>
               </li>
+
               <li>
                 <a href="aa.html">Ajuda</a>
               </li>
+
+             </ul>   
             </ul>
 
             <ul id="nav-mobile" className="sidenav">
               <li>
                 <a href="/home">Home</a>
               </li>
+
               <li>
                 <a href="aa.html">Ajuda</a>
               </li>
@@ -73,7 +83,7 @@ export class Listagem extends Component {
                   passado.
                 </td>
                 <td>
-                  <a href="/" class="waves-effect green lighten-2 btn">
+                  <a href="#" class="waves-effect green lighten-2 btn">
                     Documento
                   </a>
                 </td>

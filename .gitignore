@@ -1,2 +1,3 @@
 backend/package-lock.json
 backend/src/config/database.js
+.vscode/settings.json

@@ -6,10 +6,11 @@ import "./style.css";
 export class coordenacao extends Component {
   componentDidMount() {
     document.addEventListener("DOMContentLoaded", function () {
+
       var elems = document.querySelectorAll(".sidenav");
       var instances = M.Sidenav.init(elems);
-      var elems = document.querySelectorAll("select");
-      var instances = M.FormSelect.init(elems);
+      var elems = document.querySelectorAll(".dropdown-trigger");
+      var instances = M.Dropdown.init(elems);
     });
   }
 
@@ -18,6 +19,7 @@ export class coordenacao extends Component {
       <div>
         <nav class="light-green darken-4" role="navigation">
           <div class="nav-wrapper container">
+
             <a id="logo-container" href=" " class="brand-logo">
               IFPE
             </a>
@@ -27,21 +29,13 @@ export class coordenacao extends Component {
             </a>
 
             <ul className="right hide-on-med-and-down">
-              <a
-                className="dropdown-trigger btn light-green darken-4 "
-                href="#"
-                data-target="dropdown1"
-              >
-                {" "}
+
+              <a className="dropdown-trigger btn light-green darken-4 " href=" " data-target="dropdown1">
                 <i className="material-icons">menu</i>
               </a>
+
               <ul id="dropdown1" class="dropdown-content">
-                <li>
-                  <a href="/teste">Criar requisições</a>
-                </li>
-                <li>
-                  <a href="/list2ndcall">Listar requisições</a>
-                </li>
+               
                 <li>
                   <a href="aa.html">Ajuda</a>
                 </li>
@@ -49,12 +43,6 @@ export class coordenacao extends Component {
             </ul>
 
             <ul id="nav-mobile" className="sidenav">
-              <li>
-                <a href="#!">Criar requisições</a>
-              </li>
-              <li>
-                <a href="/list2ndcall">Listar requisições</a>
-              </li>
               <li>
                 <a href="aa.html">Ajuda</a>
               </li>
@@ -66,6 +54,7 @@ export class coordenacao extends Component {
           <div className="col s12" id="form">
             <div className="container">
               <table className="table">
+
                 <tr>
                   <th>Nome</th>
                   <th>Matricula</th>
@@ -73,6 +62,7 @@ export class coordenacao extends Component {
                   <th>Turno</th>
                   <th>Observacoes</th>
                 </tr>
+
                 <tr>
                   <td>Eduardo Bezerra de barros</td>
                   <td>0123456789</td>
@@ -85,36 +75,39 @@ export class coordenacao extends Component {
                   </td>
                 </tr>
               </table>
+
               <div className="col s12">
-                <a class="waves-effect green lighten-2 btn bt1 col s12">
-                  Aprovar
-                </a>
+                <div className="col s12">
+                  <textarea
+                    className="text"
+                    rows="100"
+                    cols="100"
+                    placeholder="Justificativa:"
+                    name="observacoes"
+                    type="text"/>
+                </div>
+
+                <div className="container">
+
+                <div className="col s6">
+                  <a className="waves-effect green lighten-2 btn bt1 col s9">Aprovar </a>
+                </div>
+
+                
               </div>
+              
+
+              <div className="container">
+
+                <div className="col s6">
+                  <a className="waves-effect green lighten-2 btn bt2 col s9">Recusar</a>
+                </div>
+
+              </div>
+</div>
             </div>
 
-            <div className="container">
-              <div className="col s12">
-                <a class="waves-effect green lighten-2 btn bt2 col s12">
-                  Recusar
-                </a>
-              </div>
-            </div>
-
-            <div className="container">
-              <div className="col s12">
-                <textarea
-                  className="text"
-                  rows="100"
-                  cols="100"
-                  placeholder="Justificativa:"
-                  name="observacoes"
-                  type="text"
-                />
-              </div>
-            </div>
-            <a href="/coordlist" className="waves-effect red lighten-2 bt3 btn">
-              Voltar
-            </a>
+            <a href="/coordlist" className="waves-effect red lighten-2 bt3 btn">Voltar</a>
           </div>
         </div>
 

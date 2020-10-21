@@ -27,21 +27,13 @@ export class Coordlist extends Component {
             </a>
 
             <ul className="right hide-on-med-and-down">
-              <a
-                className="dropdown-trigger btn light-green darken-4 "
-                href="#"
-                data-target="dropdown1"
-              >
-                {" "}
+
+              <a className="dropdown-trigger btn light-green darken-4 " href="*" data-target="dropdown1">
                 <i className="material-icons">menu</i>
               </a>
+
               <ul id="dropdown1" class="dropdown-content">
-                <li>
-                  <a href="/2ndcall">Criar requisições</a>
-                </li>
-                <li>
-                  <a href="/list2ndcall">Listar requisições</a>
-                </li>
+
                 <li>
                   <a href="aa.html">Ajuda</a>
                 </li>
@@ -49,16 +41,12 @@ export class Coordlist extends Component {
             </ul>
 
             <ul id="nav-mobile" className="sidenav">
-              <li>
-                <a href="#!">Criar requisições</a>
-              </li>
-              <li>
-                <a href="#!">Listar requisições</a>
-              </li>
+              
               <li>
                 <a href="aa.html">Ajuda</a>
               </li>
             </ul>
+
           </div>
         </nav>
 
