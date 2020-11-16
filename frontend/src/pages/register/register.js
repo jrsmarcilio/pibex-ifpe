@@ -16,8 +16,8 @@ export class register extends Component {
   render() {
     return (
       <div>
-        
-           <nav className="light-green darken-4" role="navigation">
+
+        <nav className="light-green darken-4" role="navigation">
           <div className="nav-wrapper container">
             <a id="logo-container" href="*" className="brand-logo">IFPE</a>
 
@@ -64,13 +64,13 @@ export class register extends Component {
             <div className="input-field col s6">
               <i className="material-icons prefix">perm_identity</i>
               <input id="input_text" type="text" className="validate" />
-              <label htmlFor="input_text">Matricula</label>
+              <label htmlFor="input_text">Matricula/Siape</label>
             </div>
             <div className="container">
               <div className="col s12">
                 <a
                   href="/home"
-                  className="btn waves-effect green lighten-2 col s11"
+                  className="btn waves-effect green lighten-2 col s12"
                 >
                   Logar
                 </a>
