@@ -29,9 +29,7 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.pagee-footer {
-  width: 100%;
-}
+
 .section {
   padding-top: 4vw;
   padding-bottom: 4vw;
