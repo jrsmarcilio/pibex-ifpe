@@ -15,6 +15,7 @@ export class Coordlist extends Component {
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Matricula</th>
+                <th>Tipo de requerimento</th>
                 <th>Data do requerimento</th>
                 <th>Situação</th>
                 <th>Opções</th>
@@ -26,6 +27,7 @@ export class Coordlist extends Component {
                 <td>001</td>
                 <td>Joseph Alencar</td>
                 <td>20201b310000</td>
+                <td>Abono de falta</td>
                 <td>20/07/2020</td>
                 <td>Em análise</td>
                 <td>
@@ -41,6 +43,7 @@ export class Coordlist extends Component {
                 <td>002</td>
                 <td>Silvest talonge</td>
                 <td>20201b319999</td>
+                <td>Segunda chamada</td>
                 <td>20/07/2020</td>
                 <td>Em análise</td>
                 <td>

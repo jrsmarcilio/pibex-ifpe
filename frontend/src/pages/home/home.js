@@ -12,14 +12,14 @@ export class Home extends Component {
           <ul>
             <li>
               <a
-                href="/2ndcall"
+                href="/requerimentos"
                 className="waves-effect green lighten-2 black-text col s9 btn bt1">Criar requisições
               </a>
             </li>
 
             <li>
               <a
-                href="/list2ndcall"
+                href="/listarequerimentos"
                 className="waves-effect green lighten-2 btn black-text col s9  bt2">Listar requisições</a>
             </li>
           </ul>

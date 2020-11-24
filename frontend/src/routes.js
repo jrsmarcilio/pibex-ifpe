@@ -24,6 +24,8 @@ export function Routes() {
         <Route path="/register" component={Register} />
 
         <Route path="/requerimentos" component={Requeriments} />
+
+
         <Route path="/listarequerimentos" component={Listrequeriments} />
 
         <Route path="/coordlist" component={Coordlist} />

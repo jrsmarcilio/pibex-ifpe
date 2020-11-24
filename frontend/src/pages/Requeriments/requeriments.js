@@ -14,11 +14,14 @@ export class Requeriments extends Component {
       dia_ausente: "",
       observacoes: "",
       docAnexo: "",
+
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
+
 
   handleChange(event) {
     console.log(event.target.name)
@@ -62,9 +65,9 @@ export class Requeriments extends Component {
           onSubmit={this.handleSubmit}>
 
           <div className="container row">
-            <div className="input-field col s12 m6">
 
-              <select name="tipo_requisicao" onChange={this.handleChange}>
+            <div className="input-field col s12 m6">
+              <select name="tipo_requisicao" onChange={this.handleChange, this.alterar}>
                 <option value="" disabled selected>Selecione o tipo de requisição</option>
                 <option value="SegundaChamada"> Segunda chamada</option>
                 <option data-section="AbonoFalta" value="AbonoFalta">Abono de falta</option>

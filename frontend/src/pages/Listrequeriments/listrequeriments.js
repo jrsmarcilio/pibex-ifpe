@@ -14,6 +14,7 @@ export class Listrequeriments extends Component {
               <tr>
                 <th>ID</th>
                 <th>Matricula</th>
+                <th>Tipo de requerimento</th>
                 <th>Data do requerimento</th>
                 <th>Observações</th>
                 <th>Comprovante</th>
@@ -25,7 +26,9 @@ export class Listrequeriments extends Component {
               <tr>
                 <td>001</td>
                 <td>20201b310000</td>
+                <td>Abono de falta</td>
                 <td>20/07/2020</td>
+
                 <td>
                   Faltei por algum motivo que ainda não foi explicado pelo o
                   universo, porque junta o presente e o futuro viajando pelo
@@ -41,14 +44,18 @@ export class Listrequeriments extends Component {
               <tr>
                 <td>001</td>
                 <td>20201b310000</td>
+                <td>Segunda chamada</td>
                 <td>20/07/2020</td>
-                <td className="Text">
+
+                <td>
                   Faltei por algum motivo que ainda não foi explicado pelo o
                   universo, porque junta o presente e o futuro viajando pelo
                   passado.
                 </td>
                 <td>
-                  <a href="*" class="waves-effect green lighten-2 btn">Documento</a>
+                  <a href="*" class="waves-effect green lighten-2 btn">
+                    Documento
+                  </a>
                 </td>
                 <td>Em análise</td>
               </tr>
