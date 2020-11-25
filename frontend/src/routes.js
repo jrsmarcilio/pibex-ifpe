@@ -12,6 +12,7 @@ import Listrequeriments from "./pages/Listrequeriments/listrequeriments";
 
 import Coordenacao from "./pages/coordenação/Coordenacao";
 import Coordlist from "./pages/coordlist/Coordlist";
+import Abono from "./pages/Requeriments/abono";
 
 export function Routes() {
   return (
@@ -24,6 +25,7 @@ export function Routes() {
         <Route path="/register" component={Register} />
 
         <Route path="/requerimentos" component={Requeriments} />
+        <Route path="/Abono" component={Abono} />
 
 
         <Route path="/listarequerimentos" component={Listrequeriments} />
