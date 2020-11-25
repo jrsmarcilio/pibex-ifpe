@@ -2,32 +2,32 @@ import React from "react";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Login from "./pages/Login/Login";
-import Home from "./pages/Home/home";
+import Login from "./pages/Login/";
+// import Home from "./pages/Home/index";
 
-import Register from "./pages/register/register";
+import Register from "./pages/Register/";
 
-import Requeriments from "./pages/Requeriments/requeriments";
-import Listrequeriments from "./pages/Listrequeriments/listrequeriments";
+import Requeriments from "./pages/Requeriments/";
+// import allRequeriments from "./pages/AllRequeriments/";
 
-import Coordenacao from "./pages/coordenação/Coordenacao";
-import Coordlist from "./pages/coordlist/Coordlist";
+// import Coordenacao from "./pages/coordenação/Coordenacao";
+// import Coordlist from "./pages/coordlist/Coordlist";
 
 export function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-
         <Route path="/" exact component={Login} />
-        <Route path="/home" component={Home} />
-
+        <Route path="/requerimentos" component={Requeriments} />
         <Route path="/register" component={Register} />
 
-        <Route path="/requerimentos" component={Requeriments} />
-        <Route path="/listarequerimentos" component={Listrequeriments} />
+        {/* <Route path="/home" component={Home} />
+
+
+        <Route path="/allRequerimentos" component={allRequeriments} />
 
         <Route path="/coordlist" component={Coordlist} />
-        <Route path="/coordenacao" component={Coordenacao} />
+        <Route path="/coordenacao" component={Coordenacao} /> */}
       </Switch>
     </BrowserRouter>
   );

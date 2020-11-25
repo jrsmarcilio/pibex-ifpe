@@ -15,6 +15,7 @@ routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware); //Rotas abaixo necessitam de autenticação
+routes.use(authMiddleware); //Rotas abaixo necessitam de autenticação
 
 routes.put('/users', UserController.update);
 

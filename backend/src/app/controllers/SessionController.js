@@ -26,19 +26,29 @@ class SessionController {
     if (!(await user.checkPassword(password))) {
       return res.status(401).json({ error: 'Password does not match' });
     }
-
     const { id, name } = user;
 
-    return res.json({
-      user: {
-        id,
-        name,
-        registration,
-      },
-      token: jwt.sign({ id }, authConfig.secret, {
-        expiresIn: authConfig.expiresIn,
-      }),
+    const token = jwt.sign({ id }, authConfig.secret, {
+      expiresIn: authConfig.expiresIn,
     });
+
+    const storage = { user: { id, name, registration } };
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', storage.user);
+
+    return res.redirect('http://localhost:3000/home');
+
+    // return res.json({
+    //   user: {
+    //     id,
+    //     name,
+    //     registration,
+    //   },
+    //   token: jwt.sign({ id }, authConfig.secret, {
+    //     expiresIn: authConfig.expiresIn,
+    //   }),
+    // });
   }
 }
 export default new SessionController();

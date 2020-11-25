@@ -1,0 +1,66 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#form {
+  margin-top: 3%;
+  margin-left: 6%;
+  width: 90%;
+  padding: 2%;
+}
+
+.table {
+  width: 99%;
+}
+
+.bt1 {
+  margin-top: 3%;
+  margin-left: 10%;
+}
+
+.bt2 {
+  margin-top: 3%;
+}
+
+.bt3 {
+  margin-top: 3%;
+  margin-left: 74%;
+}
+
+.text {
+  margin-top: 3%;
+  inline-size: 100%;
+}
+@media screen and (max-width: 480px) {
+  .container {
+    width: 94%;
+  }
+  .table {
+    display: none;
+  }
+  .table {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.pagee-footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.section {
+  padding-top: 4vw;
+  padding-bottom: 4vw;
+}
+
+#texto {
+  padding-top: 2vw;
+}
