@@ -1,27 +1,29 @@
+/* eslint-disable no-undef */
 import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/js/materialize";
 import "./style.css";
+import DateRanger from '../../components/DateRange.js'
 
-const axios = require("axios");
+//import axios from "axios";
 
-export class Requeriments extends Component {
+export class Abono extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       matricula: "",
       curso: "",
       dia_ausente: "",
       observacoes: "",
       docAnexo: "",
+      date: null,
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    console.log(event.target.name);
     let change = {};
     change[event.target.name] = event.target.value;
     this.setState(change);
@@ -30,14 +32,15 @@ export class Requeriments extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    axios
-      .post("http://localhost:3001/newreq", this.state)
-      .then(function (response) {
-        alert("Requerimento encaminhado com sucesso!");
-      })
-      .catch(function (error) {
-        alert(error, "Falha no envio do requerimento, tente novamente!");
-      });
+    console.log(this.state);
+    // axios
+    //   .post("http://localhost:3001/newreq", this.state)
+    //   .then(function (response) {
+    //     alert("Requerimento encaminhado com sucesso!");
+    //   })
+    //   .catch(function (error) {
+    //     alert(error, "Falha no envio do requerimento, tente novamente!");
+    //   });
   }
 
   componentDidMount() {
@@ -56,62 +59,20 @@ export class Requeriments extends Component {
           action="/newreq"
           enctype="multipart/form-data"
           method="POST"
-          onSubmit={this.handleSubmit}
-        >
+          onSubmit={this.handleSubmit}>
+
           <div className="container row">
+
             <div className="input-field col s12 m6">
-              <select
-                name="tipo_requisicao"
-                onChange={(this.handleChange, this.alterar)}
-              >
-                <option value="" disabled selected>
-                  Selecione o tipo de requisição
-                </option>
-                <option value="SegundaChamada"> Segunda chamada</option>
-                <option data-section="AbonoFalta" value="AbonoFalta">
-                  Abono de falta
-                </option>
+              <select name="tipo_requisicao" onChange={this.handleChange}>
+                <option value="Abono Falta" selected> Abono de falta</option>
               </select>
             </div>
 
             <div className="input-field col s12 m6">
-              <select>
-                <option value="" disabled selected>
-                  Selecione a disciplina desejada
-                </option>
-                <optgroup label="1º periodo">
-                  <option value="1">
-                    Desenvolvimento Web I(30H) - VIVIANE
-                  </option>
-                  <option value="2">
-                    Fundamentos da Informática(45H) - SÉRGIO TORRES
-                  </option>
-                  <option value="3">
-                    Inglês Instrumental I(30H) - ROBERTA LIMA
-                  </option>
-                  <option value="4">Lógica de Programação(75H) - HAVANA</option>
-                  <option value="5">
-                    Matemática Aplicada(45H) - TIAGO MARQUES MADUREIRA
-                  </option>
-                  <option value="6">
-                    Português Instrumental(45H) - ANA JOSIL
-                  </option>
-                  <option value="7">
-                    {" "}
-                    Rede de Computadores(60H) - DIEGO DOS PASSOS SILVA
-                  </option>
-                </optgroup>
-              </select>
-            </div>
 
-            <div className="input-field col s12 m6">
-              <input
-                name="dia_ausente"
-                type="date"
-                value={this.state.dia_ausente}
-                onChange={this.handleChange}
-              />
-              <label Htmlfor="datepicker">Data do dia Perdido</label>
+              <DateRanger />
+
             </div>
 
             <div className="textarea col s12 m6">
@@ -148,20 +109,24 @@ export class Requeriments extends Component {
               </div>
             </div>
           </div>
+
           <div className="input-field col s12 m6 l3 center">
             <button
               type="submit"
               value="Enviar"
-              href="a"
+              href="/listarequerimentos"
               className="btn waves-effect green lighten-2 col s12"
             >
               Enviar Requerimento
-            </button>
+                    </button>
           </div>
+
         </form>
+
       </div>
     );
   }
 }
 
-export default Requeriments;
+
+export default Abono;
