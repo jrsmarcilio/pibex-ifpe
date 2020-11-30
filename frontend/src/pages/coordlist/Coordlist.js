@@ -1,66 +1,72 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import M from "materialize-css";
 import "materialize-css/dist/js/materialize";
 import "./style.css";
 
-export class Coordlist extends Component {
+import axios from "axios";
 
+export default function Coordlist() {
+  const [requeriments, setRequeriments] = useState([]);
 
-  render() {
-    return (
-      <div>
-        <div className="container ">
-          <table className="highlight centered table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Matricula</th>
-                <th>Tipo de requerimento</th>
-                <th>Data do requerimento</th>
-                <th>Situação</th>
-                <th>Opções</th>
-              </tr>
-            </thead>
+  useEffect(async () => {
+    await axios
+      .get("http://localhost:3333/2ndcall/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.length === 0) {
+          M.toast({
+            html: `Nenhum requerimento solicitado.`,
+            classes: "red lighten-1",
+          });
+        }
+        console.log(response.data);
+        setRequeriments(response.data);
+      })
+      .catch((err) => {
+        M.toast({
+          html: `${err}`,
+          classes: "red lighten-1",
+        });
+      });
+  }, []);
 
-            <tbody>
-              <tr>
-                <td>001</td>
-                <td>Joseph Alencar</td>
-                <td>20201b310000</td>
-                <td>Abono de falta</td>
-                <td>20/07/2020</td>
-                <td>Em análise</td>
-                <td>
+  return (
+    <div>
+      <div className="container ">
+        <table className="highlight centered table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tipo de Requerimento</th>
+              <th>Data da Solicitação</th>
+              <th>Situação</th>
+              <th>Opções</th>
+            </tr>
+          </thead>
+
+          <thead>
+            {requeriments.map((reqs) => (
+              <tr key={reqs.id}>
+                <th>{reqs.id}</th>
+                <th>{reqs.requeriment}</th>
+                <th>{reqs.created_at.split("T", 2)[0]}</th>
+                <th>{reqs.status}</th>
+                <th>
                   <a
-                    href="/coordenacao"
-                    className="waves-effect green lighten-2 btn"
+                    class="waves-effect green lighten-2 btn"
+                    href={`/coordenacao/${reqs.id}`}
                   >
-                    analisar requerimentos
+                    analisar requerimento
                   </a>
-                </td>
+                </th>
               </tr>
-              <tr>
-                <td>002</td>
-                <td>Silvest talonge</td>
-                <td>20201b319999</td>
-                <td>Segunda chamada</td>
-                <td>20/07/2020</td>
-                <td>Em análise</td>
-                <td>
-                  <a
-                    href="/coordenacao"
-                    className="waves-effect green lighten-2 btn"
-                  >
-                    analisar requerimentos
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </thead>
+        </table>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default Coordlist;

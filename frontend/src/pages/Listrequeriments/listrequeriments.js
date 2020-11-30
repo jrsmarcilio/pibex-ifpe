@@ -1,70 +1,76 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import M from "materialize-css";
 import "materialize-css/dist/js/materialize";
 import "./style.css";
 
-export class Listrequeriments extends Component {
+import axios from "axios";
 
+export default function Listrequeriments() {
+  const [requeriments, setRequeriments] = useState([]);
 
-  render() {
-    return (
-      <div>
-        <div className="container table">
-          <table className="highlight centered ">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Matricula</th>
-                <th>Tipo de requerimento</th>
-                <th>Data do requerimento</th>
-                <th>Observações</th>
-                <th>Comprovante</th>
-                <th>Situação</th>
-              </tr>
-            </thead>
+  useEffect(async () => {
+    await axios
+      .get("http://localhost:3333/2ndcall", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data.length === 0) {
+          M.toast({
+            html: `Nenhum requerimento solicitado.`,
+            classes: "red lighten-1",
+          });
+        }
+        
+        setRequeriments(response.data);
+      })
+      .catch((err) => {
+        M.toast({
+          html: `${err}`,
+          classes: "red lighten-1",
+        });
+      });
+  }, []);
 
-            <tbody>
-              <tr>
-                <td>001</td>
-                <td>20201b310000</td>
-                <td>Abono de falta</td>
-                <td>20/07/2020</td>
+  return (
+    <div>
+      <div className="container table">
+        <table className="highlight centered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Requerimento</th>
+              <th>Solicitado</th>
+              <th>Observações</th>
+              <th>Comprovante</th>
+              <th>Situação</th>
+            </tr>
+          </thead>
 
-                <td>
-                  Faltei por algum motivo que ainda não foi explicado pelo o
-                  universo, porque junta o presente e o futuro viajando pelo
-                  passado.
-                </td>
-                <td>
-                  <a href="*" class="waves-effect green lighten-2 btn">
-                    Documento
+          <thead>
+            {requeriments.map((reqs) => (
+              <tr key={reqs.id}>
+                <th>{reqs.id}</th>
+                <th>{reqs.requeriment}</th>
+                <th>{reqs.created_at.split("T", 2)[0]}</th>
+                <th>{reqs.comments}</th>
+                <th>
+                  <a
+                    class="green lighten-2 btn"
+                    href={reqs.url}
+                    target="_blank"
+                  >
+                    Atestato
                   </a>
-                </td>
-                <td>Em análise</td>
+                </th>
+                <th>{reqs.status}</th>
               </tr>
-              <tr>
-                <td>001</td>
-                <td>20201b310000</td>
-                <td>Segunda chamada</td>
-                <td>20/07/2020</td>
-
-                <td>
-                  Faltei por algum motivo que ainda não foi explicado pelo o
-                  universo, porque junta o presente e o futuro viajando pelo
-                  passado.
-                </td>
-                <td>
-                  <a href="*" class="waves-effect green lighten-2 btn">
-                    Documento
-                  </a>
-                </td>
-                <td>Em análise</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </thead>
+        </table>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default Listrequeriments;

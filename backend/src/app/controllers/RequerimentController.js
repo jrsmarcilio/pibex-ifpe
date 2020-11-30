@@ -1,20 +1,30 @@
-import Requeriment from '../models/Requeriment';
+import Requeriment from '../models/Requeriments';
 
 class RequerimentController {
   async store(req, res) {
-    const id_user = req.userId; // Recebe o ID do Usuário Logado
-    const { path } = req.file;
-    const { discipline, test_date, comments } = req.body;
-
-    const requeriment = await Requeriment.create({
-      id_user,
+    const user_id = req.userId;
+    const { filename: path } = req.file;
+    const {
+      requeriment,
       discipline,
       test_date,
+      start_date,
+      final_date,
+      comments,
+    } = req.body;
+
+    const requeriments = await Requeriment.create({
+      user_id,
+      discipline,
+      requeriment,
+      test_date,
+      start_date,
+      final_date,
       comments,
       path,
     });
 
-    return res.json(requeriment);
+    return res.json(requeriments);
   }
 }
 

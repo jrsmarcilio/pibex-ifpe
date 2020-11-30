@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import M from "materialize-css";
 import "materialize-css/dist/js/materialize";
 import "./style.css";
 
@@ -10,6 +11,7 @@ export class Login extends Component {
     this.state = {
       registration: "",
       password: "",
+      hasError: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,24 +24,27 @@ export class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const data = this.state;
+
     axios
-      .post("http://localhost:3333/sessions", data, {
+      .post("http://localhost:3333/sessions", this.state, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        console.log(response.data.token);
+        window.location = response.data.user.redirect;
         localStorage.setItem("token", response.data.token);
       })
-      .catch((err) => {
-        console.log({ error: err });
+      .catch((error) => {
+        this.setState({ hasError: error.response.data.error });
       });
   }
-  componentDidMount() {
-    console.log("Teste");
-  }
-
   render() {
+    if (this.state.hasError) {
+      M.toast({
+        html: `${this.state.hasError}`,
+        classes: "red lighten-1",
+      });
+      this.setState({ hasError: "" });
+    }
     return (
       <div>
         <div className="row container">
@@ -57,6 +62,8 @@ export class Login extends Component {
                   id="input_text"
                   type="text"
                   className="validate"
+                  minLength="8"
+                  required
                 />
                 <label htmlFor="input_text">Matricula/Siape</label>
                 <span className="helper-text">Insira sua Matricula/Siape</span>
@@ -71,6 +78,8 @@ export class Login extends Component {
                   className="validate"
                   onChange={this.handleChange}
                   value={this.state.password}
+                  minLength="6"
+                  required
                 />
                 <label htmlFor="password">Senha</label>
               </div>
