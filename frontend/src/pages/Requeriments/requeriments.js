@@ -9,39 +9,73 @@ export class Requeriments extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matricula: "",
-      curso: "",
-      dia_ausente: "",
-      observacoes: "",
-      docAnexo: "",
-
+      requeriment: "Segunda Chamada",
+      discipline: "",
+      test_date: "",
+      comments: "",
+      path: "",
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
-
   handleChange(event) {
-    console.log(event.target.name)
     let change = {};
     change[event.target.name] = event.target.value;
     this.setState(change);
-
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
-    axios
-      .post("http://localhost:3001/newreq", this.state)
-      .then(function (response) {
-        alert("Requerimento encaminhado com sucesso!");
-      })
-      .catch(function (error) {
-        alert(error, "Falha no envio do requerimento, tente novamente!");
+    const { discipline, test_date, path, requeriment, comments } = this.state;
+    if (discipline === "") {
+      M.toast({
+        html: "Selecione a disciplina.",
+        classes: "red lighten-1",
       });
+    } else if (test_date === "") {
+      M.toast({
+        html: "Selecione a data da avaliação perdida.",
+        classes: "red lighten-1",
+      });
+    } else if (path === "") {
+      M.toast({
+        html: "Não esqueça de anexar seu atestado.",
+        classes: "red lighten-1",
+      });
+    } else {
+      const form = new FormData();
+      const path = document.querySelectorAll("#path");
+
+      form.append("requeriment", requeriment);
+      form.append("discipline", discipline);
+      form.append("test_date", test_date);
+      form.append("comments", comments);
+      form.append("file", path[0].files[0]);
+
+      let token = localStorage.getItem("token");
+      axios
+        .post("http://localhost:3333/2ndcall", form, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data;",
+          },
+        })
+        .then((response) => {
+          M.toast({
+            html: "Requerimento encaminhado com sucesso.",
+            classes: "green lighten-1",
+          });
+          console.log(response);
+        })
+        .catch((error) => {
+          M.toast({
+            html: "Algo deu errado.",
+            classes: "red lighten-1",
+          });
+          console.log(error);
+        });
+    }
   }
 
   componentDidMount() {
@@ -56,60 +90,72 @@ export class Requeriments extends Component {
   render() {
     return (
       <div>
-
-
         <form
-          action="/newreq"
-          enctype="multipart/form-data"
+          action="/2ndcall"
+          encType="multipart/form-data"
           method="POST"
-          onSubmit={this.handleSubmit}>
-
+          onSubmit={this.handleSubmit}
+        >
           <div className="container row">
-
             <div className="input-field col s12 m6">
-              <select name="tipo_requisicao" onChange={this.handleChange}>
-                <option value="SegundaChamada" selected> Segunda chamada</option>
+              <select defaultValue>
+                <option selected>Segunda chamada</option>
               </select>
-
             </div>
 
             <div className="input-field col s12 m6">
-
-              <select>
-                <option value="" disabled selected>Selecione a disciplina desejada</option>
-                <optgroup label="1º periodo">
-                  <option value="1">Desenvolvimento Web I(30H) - VIVIANE</option>
-                  <option value="2">Fundamentos da Informática(45H) - SÉRGIO TORRES</option>
-                  <option value="3">Inglês Instrumental I(30H) - ROBERTA LIMA</option>
-                  <option value="4">Lógica de Programação(75H) - HAVANA</option>
-                  <option value="5">Matemática Aplicada(45H) - TIAGO MARQUES MADUREIRA</option>
-                  <option value="6">Português Instrumental(45H) - ANA JOSIL</option>
-                  <option value="7"> Rede de Computadores(60H) - DIEGO DOS PASSOS SILVA
+              <select name="discipline" onChange={this.handleChange}>
+                <option value="" disabled selected>
+                  Selecione a disciplina desejada
+                </option>
+                <optgroup
+                  label="1º periodo"
+                  name="discipline"
+                  onChange={this.handleChange}
+                >
+                  <option name="Desenvolvimento Web I">
+                    Desenvolvimento Web I(30H) - VIVIANE
+                  </option>
+                  <option name="Fundamentos da Informática">
+                    Fundamentos da Informática(45H) - SÉRGIO TORRES
+                  </option>
+                  <option name="Inglês Instrumental I">
+                    Inglês Instrumental I(30H) - ROBERTA LIMA
+                  </option>
+                  <option name="Lógica de Programação">
+                    Lógica de Programação(75H) - HAVANA
+                  </option>
+                  <option name="Matemática Aplicada">
+                    Matemática Aplicada(45H) - TIAGO MARQUES MADUREIRA
+                  </option>
+                  <option name="Português Instrumental">
+                    Português Instrumental(45H) - ANA JOSIL
+                  </option>
+                  <option name="Rede de Computadores">
+                    Rede de Computadores(60H) - DIEGO DOS PASSOS SILVA
                   </option>
                 </optgroup>
               </select>
-
             </div>
 
             <div className="input-field col s12 m6">
-
               <input
-                name="dia_ausente"
+                name="test_date"
                 type="date"
-                value={this.state.dia_ausente}
+                value={this.state.test_date}
                 onChange={this.handleChange}
               />
-              <label Htmlfor="datepicker">Data do dia Perdido</label>
+              <label htmlFor="datepicker">Data do dia Perdido</label>
             </div>
 
             <div className="textarea col s12 m6">
               <textarea
                 rows="1000"
                 cols="1000"
-                placeholder="Observações:"
-                name="observacoes"
+                placeholder="Deixe seu comentário"
+                name="comments"
                 type="text"
-                value={this.state.observacoes}
+                value={this.state.comments}
                 onChange={this.handleChange}
               />
             </div>
@@ -121,8 +167,9 @@ export class Requeriments extends Component {
                   <input
                     type="file"
                     multiple
-                    name="docAnexo"
                     onChange={this.handleChange}
+                    name="path"
+                    id="path"
                   />
                 </div>
 
@@ -140,14 +187,12 @@ export class Requeriments extends Component {
             <button
               type="submit"
               value="Enviar"
-              href="a"
               className="btn waves-effect green lighten-2 col s12"
             >
               Enviar Requerimento
             </button>
           </div>
         </form>
-
       </div>
     );
   }

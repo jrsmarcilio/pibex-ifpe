@@ -3,25 +3,50 @@ import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/js/materialize";
 import "./style.css";
-import DateRanger from '../../components/DateRange.js'
 
-//import axios from "axios";
+import DateRangePicker from "react-daterange-picker";
+import "react-daterange-picker/dist/css/react-calendar.css";
+import originalMoment from "moment";
+import { extendMoment } from "moment-range";
+import axios from "axios";
+const moment = extendMoment(originalMoment);
 
 export class Abono extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
+
+    const today = moment();
 
     this.state = {
-      matricula: "",
-      curso: "",
-      dia_ausente: "",
-      observacoes: "",
-      docAnexo: "",
-      date: null,
+      requeriment: "Abono de Falta",
+      comments: "",
+      path: "",
+      isOpen: false,
+      openCalendario: "",
+      value: moment.range(today.clone().add(3, "days"), today.clone()),
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  onSelect = (value, states) => {
+    this.setState({ value, states });
+  };
+
+  onToggle = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  renderSelectionValue = () => {
+    return (
+      <div>
+        <div>Selecione o Periodo Perdido:</div>
+        {this.state.value.start.format("YYYY-MM-DD")}
+        {" - "}
+        {this.state.value.end.format("YYYY-MM-DD")}
+      </div>
+    );
+  };
 
   handleChange(event) {
     let change = {};
@@ -31,16 +56,42 @@ export class Abono extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { requeriment, comments } = this.state;
+    const start_date = this.state.value.start.format("YYYY-MM-DD");
+    const final_date = this.state.value.end.format("YYYY-MM-DD");
 
-    console.log(this.state);
-    // axios
-    //   .post("http://localhost:3001/newreq", this.state)
-    //   .then(function (response) {
-    //     alert("Requerimento encaminhado com sucesso!");
-    //   })
-    //   .catch(function (error) {
-    //     alert(error, "Falha no envio do requerimento, tente novamente!");
-    //   });
+    const form = new FormData();
+    const path = document.querySelectorAll("#path");
+
+    form.append("requeriment", requeriment);
+    form.append("start_date", start_date);
+    form.append("final_date", final_date);
+    form.append("comments", comments);
+    form.append("file", path[0].files[0]);
+
+    let token = localStorage.getItem("token");
+
+    axios
+      .post("http://localhost:3333/2ndcall", form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data;",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        M.toast({
+          html: "Requerimento encaminhado com sucesso.",
+          classes: "green lighten-1",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        M.toast({
+          html: "Algo deu errado.",
+          classes: "red lighten-1",
+        });
+      });
   }
 
   componentDidMount() {
@@ -53,26 +104,48 @@ export class Abono extends Component {
   }
 
   render() {
+    if (this.state.isOpen === false) {
+      this.state.openCalendario = "Abrir Calendário";
+    } else {
+      this.state.openCalendario = "Fechar Calendário";
+    }
     return (
       <div>
         <form
-          action="/newreq"
+          action="/2ndcall"
           enctype="multipart/form-data"
           method="POST"
-          onSubmit={this.handleSubmit}>
-
+          onSubmit={this.handleSubmit}
+        >
           <div className="container row">
-
             <div className="input-field col s12 m6">
-              <select name="tipo_requisicao" onChange={this.handleChange}>
-                <option value="Abono Falta" selected> Abono de falta</option>
+              <select>
+                <option value="Abono Falta" selected>
+                  Abono de falta
+                </option>
               </select>
             </div>
 
             <div className="input-field col s12 m6">
+              <div>
+                <div>{this.renderSelectionValue()}</div>
 
-              <DateRanger />
+                <div>
+                  <input
+                    type="button"
+                    value={this.state.openCalendario}
+                    onClick={this.onToggle}
+                  />
+                </div>
 
+                {this.state.isOpen && (
+                  <DateRangePicker
+                    value={this.state.value}
+                    onSelect={this.onSelect}
+                    singleDateRange={true}
+                  />
+                )}
+              </div>
             </div>
 
             <div className="textarea col s12 m6">
@@ -80,9 +153,9 @@ export class Abono extends Component {
                 rows="1000"
                 cols="1000"
                 placeholder="Observações:"
-                name="observacoes"
+                name="comments"
                 type="text"
-                value={this.state.observacoes}
+                value={this.state.comments}
                 onChange={this.handleChange}
               />
             </div>
@@ -94,7 +167,9 @@ export class Abono extends Component {
                   <input
                     type="file"
                     multiple
-                    name="docAnexo"
+                    name="path"
+                    id="path"
+                    required
                     onChange={this.handleChange}
                   />
                 </div>
@@ -113,20 +188,15 @@ export class Abono extends Component {
           <div className="input-field col s12 m6 l3 center">
             <button
               type="submit"
-              value="Enviar"
-              href="/listarequerimentos"
               className="btn waves-effect green lighten-2 col s12"
             >
               Enviar Requerimento
-                    </button>
+            </button>
           </div>
-
         </form>
-
       </div>
     );
   }
 }
-
 
 export default Abono;

@@ -23,13 +23,17 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      period: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       password_hash: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       privileges: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
         allowNull: false,
       },
       created_at: {
